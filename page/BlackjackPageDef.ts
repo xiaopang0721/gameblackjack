@@ -13,11 +13,7 @@ module gameblackjack.page {
 		static myinit(str: string) {
 			super.myinit(str);
 			BlackjackClip.init();
-			if (WebConfig.baseplatform == PageDef.BASE_PLATFORM_TYPE_NQP) {
-				PageDef._pageClassMap[BlackjackPageDef.PAGE_BLACKJACK] = BlackjackPage;
-			} else {
-				PageDef._pageClassMap[BlackjackPageDef.PAGE_BLACKJACK] = BlackjackPageOld;
-			}
+			PageDef._pageClassMap[BlackjackPageDef.PAGE_BLACKJACK] = BlackjackPage;
 			PageDef._pageClassMap[BlackjackPageDef.PAGE_BLACKJACK_MAP] = BlackjackMapPage;
 			PageDef._pageClassMap[BlackjackPageDef.PAGE_BLACKJACK_RULE] = BlackjackRulePage;
 			PageDef._pageClassMap[BlackjackPageDef.PAGE_BLACKJACK_BAODIAN] = BlackjackBaoDianPage;
