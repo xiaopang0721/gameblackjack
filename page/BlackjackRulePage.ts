@@ -3,7 +3,7 @@
 */
 module gameblackjack.page {
 	export class BlackjackRulePage extends game.gui.base.Page {
-		private _viewUI: ui.game_ui.ershiyidian.ErShiYiDian_GuiZeUI;
+		private _viewUI: ui.nqp.game_ui.ershiyidian.ErShiYiDian_GuiZeUI;
 
 		constructor(v: Game, onOpenFunc?: Function, onCloseFunc?: Function) {
 			super(v, onOpenFunc, onCloseFunc);

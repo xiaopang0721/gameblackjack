@@ -34,7 +34,7 @@ module gameblackjack.page {
         winMusic: "tongyong/win",
     }
     export class BlackjackMapPage extends game.gui.base.Page {
-        private _viewUI: ui.game_ui.ershiyidian.ErShiYiDianUI;
+        private _viewUI: ui.nqp.game_ui.ershiyidian.ErShiYiDianUI;
         private _mapInfo: BlackjackMapInfo;
         private _blackjackMgr: BlackjackMgr;
         private _blackjackStory: BlackjackStory;

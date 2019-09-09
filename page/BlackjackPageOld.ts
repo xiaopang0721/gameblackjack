@@ -3,7 +3,7 @@
 */
 module gameblackjack.page {
 	export class BlackjackPageOld extends game.gui.base.Page {
-		private _viewUI: ui.game_ui.ershiyidian.ErShiYiDian_HUDUI;
+		private _viewUI: ui.nqp.game_ui.ershiyidian.ErShiYiDian_HUDUI;
 		private _player: any;
 		private _leastTmep: any = [3, 10, 30, 100];
 		private _needMoney: any = [20, 200, 800, 2000];
