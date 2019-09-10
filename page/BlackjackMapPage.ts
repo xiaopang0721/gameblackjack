@@ -95,6 +95,41 @@ module gameblackjack.page {
                 this._blackjackMgr.on(BlackjackMgr.DEAL_CARDS, this, this.onAfterDealCards);
             }
             this._game.playMusic(Path_game_blackjack.music_blackjack + MUSIC_PATH.bgMusic);
+            this.initClip();
+        }
+
+        //跟注数值
+        private _minClip: BlackjackClip;
+        //比牌数值
+        private _maxClip: BlackjackClip;
+        private initClip(): void {
+            if (!this._minClip) {
+                this._minClip = new BlackjackClip(BlackjackClip.MAP_XZ);
+                this._minClip.centerX = this._viewUI.clip_min.centerX;
+                this._minClip.centerY = this._viewUI.clip_min.centerY;
+                this._viewUI.clip_min.parent.addChild(this._minClip);
+                this._viewUI.clip_min.visible = false;
+            }
+            if (!this._maxClip) {
+                this._maxClip = new BlackjackClip(BlackjackClip.MAP_XZ);
+                this._maxClip.centerX = this._viewUI.clip_max.centerX;
+                this._maxClip.centerY = this._viewUI.clip_max.centerY;
+                this._viewUI.clip_max.parent.addChild(this._maxClip);
+                this._viewUI.clip_max.visible = false;
+            }
+        }
+
+        private clearClipXZ(): void {
+            if (this._minClip) {
+                this._minClip.removeSelf();
+                this._minClip.destroy();
+                this._minClip = null;
+            }
+            if (this._maxClip) {
+                this._maxClip.removeSelf();
+                this._maxClip.destroy();
+                this._maxClip = null;
+            }
         }
 
         // 页面打开时执行函数
@@ -451,7 +486,8 @@ module gameblackjack.page {
             } else {
                 moneyStr = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2).toString();
             }
-            this._viewUI.btn_max.label = StringU.substitute("            {0}", moneyStr);
+            //this._viewUI.btn_max.label = StringU.substitute("            {0}", moneyStr);
+            this._maxClip.setText(moneyStr,true);
             let betPos = this._mapInfo.GetCurrentBetPos();
             let max = 5;
             for (let index = 0; index < max; index++) {
@@ -629,7 +665,8 @@ module gameblackjack.page {
             if (!idx) return;
             let betPos = this._mapInfo.GetCurrentBetPos();
             let statue = this._mapInfo.GetMapState();
-            this._viewUI.btn_min.label = StringU.substitute("          {0}", ChipConfig[this._blackjackStory.mapLv][0]);
+            // this._viewUI.btn_min.label =
+            this._minClip.setText(ChipConfig[this._blackjackStory.mapLv][0], true); //StringU.substitute("          {0}", ChipConfig[this._blackjackStory.mapLv][0]);
             this._viewUI.text_bet.text = ChipConfig[this._blackjackStory.mapLv][0];
             this._betVal = ChipConfig[this._blackjackStory.mapLv][0];
             this._viewUI.text_info.text = "牌局号：" + this._mapInfo.GetGameNo();
@@ -1718,6 +1755,7 @@ module gameblackjack.page {
 
                 this._clipList = [];
                 this.clearClip();
+                this.clearClipXZ();
                 if (this._blackjackMgr) {
                     this._blackjackMgr.off(BlackjackMgr.DEAL_CARDS, this, this.onAfterDealCards);
                 }

@@ -11,6 +11,8 @@ module gameblackjack {
         public static SUB_MONEY_FONT: any;
         //HUD数字
         public static HUD_FONT: any;
+        //下注
+        public static MAP_XZ:any;
 
         static init(): void {
             this.MONEY_FONT2 = {
@@ -51,6 +53,18 @@ module gameblackjack {
                 clipX: 10,
                 space: -5
             };
+
+            //场景下注数字
+            this.MAP_XZ = {
+                source: Path_game_blackjack.atlas_game_ui + "zhajinhua.atlas",
+                url: Path_game_blackjack.ui_blackjack + "clip_gz.png",
+                clipWidth: 22,
+                clipHeight: 28,
+                clipX: 11,
+                space: -5
+            };
+
+            
         }
         private _clip: ClipCell;
         constructor(font: any) {
