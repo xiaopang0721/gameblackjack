@@ -451,7 +451,7 @@ module gameblackjack.page {
             } else {
                 moneyStr = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2).toString();
             }
-            this._viewUI.btn_max.label = "最大注" + moneyStr;
+            this._viewUI.btn_max.label = StringU.substitute("            {0}", moneyStr);
             let betPos = this._mapInfo.GetCurrentBetPos();
             let max = 5;
             for (let index = 0; index < max; index++) {
@@ -629,7 +629,7 @@ module gameblackjack.page {
             if (!idx) return;
             let betPos = this._mapInfo.GetCurrentBetPos();
             let statue = this._mapInfo.GetMapState();
-            this._viewUI.btn_min.label = "最小注" + ChipConfig[this._blackjackStory.mapLv][0];
+            this._viewUI.btn_min.label = StringU.substitute("          {0}", ChipConfig[this._blackjackStory.mapLv][0]);
             this._viewUI.text_bet.text = ChipConfig[this._blackjackStory.mapLv][0];
             this._betVal = ChipConfig[this._blackjackStory.mapLv][0];
             this._viewUI.text_info.text = "牌局号：" + this._mapInfo.GetGameNo();
