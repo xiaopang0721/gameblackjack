@@ -189,7 +189,6 @@ module gameblackjack.page {
             this._viewUI.box_bet.visible = false;
             this._viewUI.btn_continue.visible = false;
             this._viewUI.view_boom.visible = false;
-            this._viewUI.view_fapai.visible = false;
             this._viewUI.text_info.visible = false;
             this._viewUI.text_roomtype.visible = false;
             this._viewUI.txt_choose0.visible = false;
@@ -755,12 +754,10 @@ module gameblackjack.page {
                 }
             }
             if (statue == MAP_STATUS.MAP_STATE_DEALING) {
-                this._viewUI.view_fapai.visible = true;
-                this._viewUI.view_fapai.ani1.play(1, true);
+                this._viewUI.view_paixie.ani2.play(0,true);
             }
             if (statue >= MAP_STATUS.MAP_STATE_DEAL_END) {
-                this._viewUI.view_fapai.visible = false;
-                this._viewUI.view_fapai.ani1.stop();
+                this._viewUI.view_paixie.ani2.stop();
             }
             if (statue == MAP_STATUS.MAP_STATE_BUY) {
                 if (this._betPos == 0) {
@@ -1005,9 +1002,8 @@ module gameblackjack.page {
         //发完牌了，显示看牌按钮还有发筹码
         private onAfterDealCards(): void {
             let idx = this._game.sceneObjectMgr.mainUnit.GetIndex();
-            this._viewUI.view_fapai.visible = false;
             this._dealCards = true;
-            this._viewUI.view_fapai.ani1.stop();
+            this._viewUI.view_paixie.ani2.stop();
             for (let i = 0; i < this._allCardsInfo.length; i++) {
                 let cardIdx = this._allCardsInfo[i].pos
                 let cards = this._allCardsInfo[i].cards
