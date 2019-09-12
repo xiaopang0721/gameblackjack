@@ -92,7 +92,7 @@ module gameblackjack {
 
             //场景下注数字
             this.MAP_XZ = {
-                source: Path_game_blackjack.atlas_game_ui + "zhajinhua.atlas",
+                source: Path_game_blackjack.atlas_game_ui + "ershiyidian.atlas",
                 url: Path_game_blackjack.ui_blackjack + "clip_zd.png",
                 clipWidth: 22,
                 clipHeight: 28,

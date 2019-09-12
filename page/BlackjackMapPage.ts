@@ -79,7 +79,7 @@ module gameblackjack.page {
                 PathGameTongyong.atlas_game_ui_tongyong + "pai.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
                 Path_game_blackjack.atlas_game_ui + "ershiyidian/effect.atlas",
-                PathGameTongyong.atlas_game_ui_tongyong + "general/effect/fapai_2.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "general/effect/fapai_3.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
             ];
