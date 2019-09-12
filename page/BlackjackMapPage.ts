@@ -486,7 +486,7 @@ module gameblackjack.page {
                 moneyStr = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2).toString();
             }
             //this._viewUI.btn_max.label = StringU.substitute("            {0}", moneyStr);
-            this._maxClip.setText(moneyStr,true);
+            this._maxClip.setText(moneyStr, true);
             let betPos = this._mapInfo.GetCurrentBetPos();
             let max = 5;
             for (let index = 0; index < max; index++) {
@@ -754,7 +754,7 @@ module gameblackjack.page {
                 }
             }
             if (statue == MAP_STATUS.MAP_STATE_DEALING) {
-                this._viewUI.view_paixie.ani2.play(0,true);
+                this._viewUI.view_paixie.ani2.play(0, true);
             }
             if (statue >= MAP_STATUS.MAP_STATE_DEAL_END) {
                 this._viewUI.view_paixie.ani2.stop();
@@ -1350,6 +1350,7 @@ module gameblackjack.page {
                                     }
                                     if (!this._blackjackMgr.isReLogin) {
                                         this._blackjackMgr.addCard(info.Card, handle, info.SeatIndex, this._allCardsInfo[cardIdx].cards.length - 1, isPart)
+                                        this._viewUI.view_paixie.ani2.play(0, false);
                                         this._game.playSound(PathGameTongyong.music_tongyong + "fapai.mp3", false);
                                     }
                                     let count = this._blackjackMgr.checkCardsType(this._allCardsInfo[cardIdx].cards, isPart);
