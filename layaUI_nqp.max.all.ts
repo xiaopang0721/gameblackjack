@@ -81,21 +81,6 @@ module ui.nqp.game_ui.ershiyidian.component {
     }
 }
 
-module ui.nqp.game_ui.ershiyidian.component {
-    export class YingUI extends View {
-		public ani1:Laya.FrameAnimation;
-		public img_win:Laya.Image;
-
-        public static  uiView:any ={"type":"View","props":{"width":120,"height":120},"child":[{"type":"Image","props":{"var":"img_win","skin":"ui/game_ui/zhajinhua/tu_ying2.png","centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5},"compId":2}],"animations":[{"nodes":[{"target":2,"keyframes":{"scaleY":[{"value":2,"tweenMethod":"backOut","tween":true,"target":2,"key":"scaleY","index":0},{"value":1,"tweenMethod":"linearNone","tween":true,"target":2,"key":"scaleY","index":10}],"scaleX":[{"value":2,"tweenMethod":"backOut","tween":true,"target":2,"key":"scaleX","index":0},{"value":1,"tweenMethod":"linearNone","tween":true,"target":2,"key":"scaleX","index":10}]}}],"name":"ani1","id":1,"frameRate":24,"action":1}]};
-        constructor(){ super()}
-        createChildren():void {
-        
-            super.createChildren();
-            this.createView(ui.nqp.game_ui.ershiyidian.component.YingUI.uiView);
-        }
-    }
-}
-
 module ui.nqp.game_ui.ershiyidian.effect {
     export class BaoPaiUI extends View {
 		public ani1:Laya.FrameAnimation;
@@ -317,7 +302,7 @@ module ui.nqp.game_ui.ershiyidian {
 		public panel_baodian:Laya.Panel;
 		public btn_close:Laya.Button;
 
-        public static  uiView:any ={"type":"View","props":{"width":1280,"height":720},"child":[{"type":"Box","props":{"width":991,"height":603,"centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5},"child":[{"type":"Image","props":{"width":987,"skin":"tongyong_ui/game_ui/tongyong/dating/game_popout_bg.png","sizeGrid":"90,40,60,40","height":596,"centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5}},{"type":"Image","props":{"y":66,"skin":"blackjack_ui/game_ui/ershiyidian/tit_baodian.png","centerX":0,"anchorY":0.5,"anchorX":0.5}},{"type":"Panel","props":{"y":178,"x":67,"width":864,"var":"panel_baodian","vScrollBarSkin":"tongyong_ui/game_ui/tongyong/dating/vscroll.png","height":378},"child":[{"type":"Image","props":{"y":2,"x":38,"width":819,"skin":"blackjack_ui/game_ui/ershiyidian/tu_baodian.jpg","height":1149}}]},{"type":"Image","props":{"y":149,"x":181,"width":743,"skin":"blackjack_ui/game_ui/ershiyidian/tu_baodian1.jpg","height":31}},{"type":"Image","props":{"y":115,"x":63,"width":118,"skin":"blackjack_ui/game_ui/ershiyidian/tu_dianshu.png","height":65}},{"type":"Image","props":{"y":180,"x":63,"width":44,"skin":"blackjack_ui/game_ui/ershiyidian/tu_baodian2.png","height":376}},{"type":"Image","props":{"y":115,"x":181,"width":743,"skin":"blackjack_ui/game_ui/ershiyidian/tu_baodian3.png","height":34}},{"type":"Button","props":{"y":41,"x":936,"var":"btn_close","stateNum":1,"skin":"tongyong_ui/game_ui/tongyong/hud/btn_gb.png","anchorY":0.5,"anchorX":0.5}}]}]};
+        public static  uiView:any ={"type":"View","props":{"width":1280,"height":720},"child":[{"type":"Box","props":{"width":991,"height":603,"centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5},"child":[{"type":"Image","props":{"width":987,"skin":"tongyong_ui/game_ui/tongyong/dating/game_popout_bg.png","sizeGrid":"90,40,60,40","height":596,"centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5}},{"type":"Image","props":{"y":66,"skin":"blackjack_ui/game_ui/ershiyidian/tit_baodian.png","centerX":0,"anchorY":0.5,"anchorX":0.5}},{"type":"Panel","props":{"y":178,"x":67,"width":864,"var":"panel_baodian","vScrollBarSkin":"tongyong_ui/game_ui/tongyong/dating/vscroll.png","height":378},"child":[{"type":"Image","props":{"y":2,"x":38,"width":819,"skin":"blackjack_ui/game_ui/ershiyidian/tu_baodian.jpg","height":1149}}]},{"type":"Image","props":{"y":149,"x":181,"width":743,"skin":"blackjack_ui/game_ui/ershiyidian/tu_baodian1.jpg","sizeGrid":"0,0,0,0","height":31}},{"type":"Image","props":{"y":115,"x":63,"width":118,"skin":"blackjack_ui/game_ui/ershiyidian/tu_dianshu.png","height":65}},{"type":"Image","props":{"y":180,"x":63,"width":44,"skin":"blackjack_ui/game_ui/ershiyidian/tu_baodian2.png","height":376}},{"type":"Image","props":{"y":115,"x":181,"width":743,"skin":"blackjack_ui/game_ui/ershiyidian/tu_baodian3.png","height":34}},{"type":"Button","props":{"y":41,"x":936,"var":"btn_close","stateNum":1,"skin":"tongyong_ui/game_ui/tongyong/hud/btn_gb.png","anchorY":0.5,"anchorX":0.5}}]}]};
         constructor(){ super()}
         createChildren():void {
         
