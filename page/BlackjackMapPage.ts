@@ -757,7 +757,7 @@ module gameblackjack.page {
                 this._viewUI.view_paixie.ani2.play(0, true);
             }
             if (statue >= MAP_STATUS.MAP_STATE_DEAL_END) {
-                this._viewUI.view_paixie.ani2.stop();
+                this._viewUI.view_paixie.ani2.gotoAndStop(0);
             }
             if (statue == MAP_STATUS.MAP_STATE_BUY) {
                 if (this._betPos == 0) {
@@ -898,7 +898,7 @@ module gameblackjack.page {
             if (statue == MAP_STATUS.MAP_STATE_SETTLEING) {
                 //结算中，有庄家黑杰克直接结算，也有正常游戏结算
                 this._viewUI.img_heguan.skin = Path_game_blackjack.ui_blackjack + "heguan.png";
-                this._blackjackMgr.fanpaiOne();
+                // this._blackjackMgr.fanpaiOne();
                 let bankerCount: number = 0;
                 for (let i = 0; i < this._allCardsInfo.length; i++) {
                     if (this._allCardsInfo[i].pos == 60) {
@@ -1003,7 +1003,7 @@ module gameblackjack.page {
         private onAfterDealCards(): void {
             let idx = this._game.sceneObjectMgr.mainUnit.GetIndex();
             this._dealCards = true;
-            this._viewUI.view_paixie.ani2.stop();
+            this._viewUI.view_paixie.ani2.gotoAndStop(0);
             for (let i = 0; i < this._allCardsInfo.length; i++) {
                 let cardIdx = this._allCardsInfo[i].pos
                 let cards = this._allCardsInfo[i].cards
@@ -1358,7 +1358,7 @@ module gameblackjack.page {
                                     let childPos = info.SeatIndex % 10;
                                     let boomIdx = (info.SeatIndex - mainIdx * 10 + 50) % 50 + 10;
                                     if (info.SeatIndex < 60) {
-                                        Laya.timer.once(200, this, () => {
+                                        Laya.timer.once(800, this, () => {
                                             if (count[0] == 0) {
                                                 this._viewUI["view_qipao" + posIdx + "_" + childPos].img_bg.skin = Path_game_blackjack.ui_blackjack + "bg_4.png"
                                                 this._viewUI["view_qipao" + posIdx + "_" + childPos].txt_count.text = "爆牌";
@@ -1403,7 +1403,7 @@ module gameblackjack.page {
                                             }
                                         })
                                     } else if (info.SeatIndex == 60) {
-                                        Laya.timer.once(200, this, () => {
+                                        Laya.timer.once(800, this, () => {
                                             if (count[0] == 0) {
                                                 this._viewUI.view_qipao5_0.img_bg.skin = Path_game_blackjack.ui_blackjack + "bg_4.png"
                                                 this._viewUI.view_qipao5_0.txt_count.text = "爆牌";
