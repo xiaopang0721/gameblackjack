@@ -898,7 +898,7 @@ module gameblackjack.page {
             if (statue == MAP_STATUS.MAP_STATE_SETTLEING) {
                 //结算中，有庄家黑杰克直接结算，也有正常游戏结算
                 this._viewUI.img_heguan.skin = Path_game_blackjack.ui_blackjack + "heguan.png";
-                // this._blackjackMgr.fanpaiOne();
+                this._blackjackMgr.fanpaiOne();
                 let bankerCount: number = 0;
                 for (let i = 0; i < this._allCardsInfo.length; i++) {
                     if (this._allCardsInfo[i].pos == 60) {
