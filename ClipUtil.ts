@@ -97,7 +97,7 @@ module gameblackjack {
                 clipWidth: 22,
                 clipHeight: 28,
                 clipX: 11,
-                space: -8
+                space: -5
             };
 
 
