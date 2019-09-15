@@ -1033,9 +1033,15 @@ module gameblackjack.page {
                 }
             }
         }
-
+        private _curDiffTime: number;
         //个人操作倒计时
-        update(): void {
+        update(diff:number): void {
+            if (!this._curDiffTime || this._curDiffTime < 0) {
+                this._viewUI.btn_chongzhi.ani1.play(0, false);
+                this._curDiffTime = TongyongPageDef.CZ_PLAY_DIFF_TIME;
+            } else {
+                this._curDiffTime -= diff;
+            }
             let mainUnit = this._game.sceneObjectMgr.mainUnit;
             if (!mainUnit) return;
             let mapinfo: BlackjackMapInfo = this._game.sceneObjectMgr.mapInfo as BlackjackMapInfo;
