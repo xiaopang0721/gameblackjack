@@ -1036,6 +1036,7 @@ module gameblackjack.page {
         private _curDiffTime: number;
         //个人操作倒计时
         update(diff:number): void {
+            super.update(diff);
             if (!this._curDiffTime || this._curDiffTime < 0) {
                 this._viewUI.btn_chongzhi.ani1.play(0, false);
                 this._curDiffTime = TongyongPageDef.CZ_PLAY_DIFF_TIME;
