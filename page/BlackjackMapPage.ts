@@ -485,7 +485,16 @@ module gameblackjack.page {
             } else {
                 moneyStr = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2).toString();
             }
-            //this._viewUI.btn_max.label = StringU.substitute("            {0}", moneyStr);
+            if (moneyStr.length > 5) {
+                this._maxClip.centerX = 20;
+                this._viewUI.btn_max.width = 250;
+            } else if (moneyStr.length > 4) {
+                this._maxClip.centerX = 10;
+                this._viewUI.btn_max.width = 225;
+            } else {
+                this._maxClip.centerX = 0;
+                this._viewUI.btn_max.width = 210;
+            }
             this._maxClip.setText(moneyStr, true);
             let betPos = this._mapInfo.GetCurrentBetPos();
             let max = 5;
@@ -1035,7 +1044,7 @@ module gameblackjack.page {
         }
         private _curDiffTime: number;
         //个人操作倒计时
-        update(diff:number): void {
+        update(diff: number): void {
             super.update(diff);
             if (!this._curDiffTime || this._curDiffTime < 0) {
                 this._viewUI.btn_chongzhi.ani1.play(0, false);
