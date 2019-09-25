@@ -244,7 +244,7 @@ module gameblackjack.page {
                     break;
                 case this._viewUI.btn_back://返回
                     let mapinfo: BlackjackMapInfo = this._game.sceneObjectMgr.mapInfo as BlackjackMapInfo;
-                    if (mapinfo && mapinfo.GetPlayState() == 1) {
+                    if (mapinfo && (mapinfo.GetPlayState() == 1 || mapinfo.GetMapState() <= MAP_STATUS.MAP_STATE_SETTLEING)) {
                         this._game.showTips("游戏尚未结束，请先打完这局哦~");
                         return;
                     }
@@ -508,7 +508,7 @@ module gameblackjack.page {
                     let name = getMainPlayerName(unit.GetName());
                     this._viewUI["view_player" + index].txt_name.text = name;
                     let money = EnumToString.getPointBackNum(unit.GetMoney(), 2);
-                    this._viewUI["view_player" + index].txt_name.text = money;
+                    this._viewUI["view_player" + index].txt_money.text = money;
                     this._viewUI["img_pos" + index].skin = Path_game_blackjack.ui_blackjack + "tu_weizhi" + posIdx + ".png"
                     if (unit == mainUnit) {
                         //点了下注完成，按钮都隐藏
@@ -653,7 +653,7 @@ module gameblackjack.page {
                     }
                 }
                 money = EnumToString.getPointBackNum(money, 2);
-                this._viewUI.view_player0.txt_name.text = money.toString();
+                this._viewUI.view_player0.txt_money.text = money.toString();
             }
         }
 
