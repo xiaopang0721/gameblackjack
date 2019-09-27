@@ -21,6 +21,10 @@ module gameblackjack.page {
 				PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "logo.atlas",
+				Path_game_blackjack.ui_blackjack + "sk/eyd_0.png",
+				Path_game_blackjack.ui_blackjack + "sk/eyd_1.png",
+				Path_game_blackjack.ui_blackjack + "sk/eyd_2.png",
+				Path_game_blackjack.ui_blackjack + "sk/eyd_3.png",
 			];
 			this._isNeedDuang = false;
 		}
