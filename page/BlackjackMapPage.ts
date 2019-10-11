@@ -286,7 +286,7 @@ module gameblackjack.page {
                 case this._viewUI.btn_min://最小
                     this._viewUI.box_bet.visible = false;
                     let minBet = ChipConfig[this._blackjackStory.mapLv][0];
-                    if (this._game.sceneObjectMgr.mainPlayer.playerInfo.money < ChipConfig[this._blackjackStory.mapLv][0]) {
+                    if (this._game.sceneObjectMgr.mainUnit.GetMoney() < ChipConfig[this._blackjackStory.mapLv][0]) {
                         this._game.showTips("金币不足");
                         return;
                     }
@@ -298,7 +298,7 @@ module gameblackjack.page {
                 case this._viewUI.btn_max://最大
                     this._viewUI.box_bet.visible = false;
                     let maxBet = ChipConfig[this._blackjackStory.mapLv][1];
-                    let hasMoney = this._game.sceneObjectMgr.mainPlayer.playerInfo.money;
+                    let hasMoney = this._game.sceneObjectMgr.mainUnit.GetMoney();
                     if (maxBet > hasMoney) {
                         maxBet = hasMoney;
                     }
@@ -313,7 +313,7 @@ module gameblackjack.page {
                     break;
                 case this._viewUI.btn_enter:
                     this._viewUI.box_bet.visible = false;
-                    if (this._game.sceneObjectMgr.mainPlayer.playerInfo.money < ChipConfig[this._blackjackStory.mapLv][0]) {
+                    if (this._game.sceneObjectMgr.mainUnit.GetMoney() < ChipConfig[this._blackjackStory.mapLv][0]) {
                         this._game.showTips("金币不足");
                         return;
                     }
