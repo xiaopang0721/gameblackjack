@@ -537,10 +537,11 @@ module gameblackjack.page {
                                 viewPlayer.img_qifu.visible = true;
                                 viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
                             })
-                        } else {
-                            viewPlayer.img_qifu.visible = true;
-                            viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
-                        }
+                        } 
+                        // else {
+                        //     viewPlayer.img_qifu.visible = true;
+                        //     viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
+                        // }
                     } else {
                         viewPlayer.img_qifu.visible = false;
                         viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
