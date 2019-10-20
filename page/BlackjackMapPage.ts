@@ -30,8 +30,8 @@ module gameblackjack.page {
         chipMusic: "chouma.mp3",
         startMusic: "kais.mp3",
         teShuPaiMusic: "tesupai.mp3",
-        loseMusic: "tongyong/lose",
-        winMusic: "tongyong/win",
+        loseMusic: "lose",
+        winMusic: "win",
     }
     export class BlackjackMapPage extends game.gui.base.Page {
         private _viewUI: ui.nqp.game_ui.ershiyidian.ErShiYiDianUI;
@@ -540,10 +540,11 @@ module gameblackjack.page {
                                 viewPlayer.img_qifu.visible = true;
                                 viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
                             })
-                        } else {
-                            viewPlayer.img_qifu.visible = true;
-                            viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
-                        }
+                        } 
+                        // else {
+                        //     viewPlayer.img_qifu.visible = true;
+                        //     viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
+                        // }
                     } else {
                         viewPlayer.img_qifu.visible = false;
                         viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
