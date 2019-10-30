@@ -537,7 +537,7 @@ module gameblackjack.page {
                                 viewPlayer.img_qifu.visible = true;
                                 viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
                             })
-                        } 
+                        }
                         // else {
                         //     viewPlayer.img_qifu.visible = true;
                         //     viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
@@ -1530,12 +1530,15 @@ module gameblackjack.page {
                 }
                 let chip = this._game.sceneObjectMgr.createOfflineObject(SceneRoot.CHIP_MARK, BlackjackChip) as BlackjackChip;
                 chip.setData(optType, posIdx, mainIdx, index, isPart, ownerIdx, val);
+                chip.visible = false;
                 if (optType == this._chipTypeBet || optType == this._chipTypeDouble || optType == this._chipTypePart) {
                     this._totalChip.push(chip);
                     if (this._blackjackMgr.isReLogin) {
+                        chip.visible = true;
                         chip.drawChip();
                     }
                     else {
+                        chip.visible = true;
                         chip.sendChip();
                     }
                 }
