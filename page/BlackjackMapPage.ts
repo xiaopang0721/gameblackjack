@@ -62,10 +62,10 @@ module gameblackjack.page {
             10: [505, 225], 11: [585, 225], 20: [317, 199], 21: [385, 229], 30: [153, 115],
             31: [207, 154], 40: [877, 139], 41: [935, 97], 50: [697, 218], 51: [764, 188]
         }; //爆炸位置,分牌的
-        private _doublePos: any = { 10: [645, 309], 20: [463, 283], 30: [316, 211], 40: [981, 205], 50: [826, 280] }; //双倍标识位置
+        private _doublePos: any = { 10: [645, 319], 20: [463, 293], 30: [316, 221], 40: [981, 215], 50: [826, 290] }; //双倍标识位置
         private _doublePosPart: any = {
-            10: [607, 301], 11: [684, 301], 20: [440, 275], 21: [505, 303], 30: [288, 196],
-            31: [340, 233], 40: [949, 228], 41: [1004, 188], 50: [781, 300], 51: [845, 271]
+            10: [607, 311], 11: [684, 311], 20: [440, 285], 21: [505, 313], 30: [288, 206],
+            31: [340, 243], 40: [949, 238], 41: [1004, 198], 50: [781, 310], 51: [845, 281]
         }; //双倍标识位置,分牌的
 
         constructor(v: Game, onOpenFunc?: Function, onCloseFunc?: Function) {
@@ -540,7 +540,7 @@ module gameblackjack.page {
                                 viewPlayer.img_qifu.visible = true;
                                 viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
                             })
-                        } 
+                        }
                         // else {
                         //     viewPlayer.img_qifu.visible = true;
                         //     viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
@@ -1533,12 +1533,15 @@ module gameblackjack.page {
                 }
                 let chip = this._game.sceneObjectMgr.createOfflineObject(SceneRoot.CHIP_MARK, BlackjackChip) as BlackjackChip;
                 chip.setData(optType, posIdx, mainIdx, index, isPart, ownerIdx, val);
+                chip.visible = false;
                 if (optType == this._chipTypeBet || optType == this._chipTypeDouble || optType == this._chipTypePart) {
                     this._totalChip.push(chip);
                     if (this._blackjackMgr.isReLogin) {
+                        chip.visible = true;
                         chip.drawChip();
                     }
                     else {
+                        chip.visible = true;
                         chip.sendChip();
                     }
                 }
