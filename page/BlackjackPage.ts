@@ -63,7 +63,7 @@ module gameblackjack.page {
 			super.onOpen();
 
 			this.initPlayerInfo();
-			(this._viewUI.view as TongyongHudNqpPage).onOpen(this._game, BlackjackPageDef.GAME_NAME);
+			(this._viewUI.view as TongyongHudNqpPage).onOpen(this._game, BlackjackPageDef.GAME_NAME, false);
 			for (let index = 0; index < this._viewUI.box_right.numChildren; index++) {
 				this._viewUI.box_right._childs[index].visible = true;
 				Laya.Tween.from(this._viewUI.box_right._childs[index], {
@@ -115,14 +115,14 @@ module gameblackjack.page {
 					}
 					this._game.sceneObjectMgr.intoStory(BlackjackPageDef.GAME_NAME, Web_operation_fields.GAME_ROOM_CONFIG_BLACKJACK_4.toString());
 					break;
-				case this._viewUI.btn_join:
-					let maplv = TongyongUtil.getJoinMapLv(BlackjackPageDef.GAME_NAME, this._player.playerInfo.money);
-					if (!maplv) {
-						this.showTipsBox(this._leastTmep[0]);
-						return;
-					}
-					this._game.sceneObjectMgr.intoStory(BlackjackPageDef.GAME_NAME, maplv.toString());
-					break;
+				// case this._viewUI.btn_join:
+				// 	let maplv = TongyongUtil.getJoinMapLv(BlackjackPageDef.GAME_NAME, this._player.playerInfo.money);
+				// 	if (!maplv) {
+				// 		this.showTipsBox(this._leastTmep[0]);
+				// 		return;
+				// 	}
+				// 	this._game.sceneObjectMgr.intoStory(BlackjackPageDef.GAME_NAME, maplv.toString());
+				// 	break;
 				default:
 					break;
 			}
