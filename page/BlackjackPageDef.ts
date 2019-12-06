@@ -36,13 +36,9 @@ module gameblackjack.page {
 				Path.map + 'pz_blackjack.png',
 				Path.map_far + 'bg_blackjack.jpg',
 				Path_game_blackjack.ui_blackjack + "sk/eyd_0.png",
-				Path_game_blackjack.ui_blackjack + "sk/eyd_0.sk",
 				Path_game_blackjack.ui_blackjack + "sk/eyd_1.png",
-				Path_game_blackjack.ui_blackjack + "sk/eyd_1.sk",
 				Path_game_blackjack.ui_blackjack + "sk/eyd_2.png",
-				Path_game_blackjack.ui_blackjack + "sk/eyd_2.sk",
 				Path_game_blackjack.ui_blackjack + "sk/eyd_3.png",
-				Path_game_blackjack.ui_blackjack + "sk/eyd_3.sk",
 			]
 
 			if (WebConfig.needMusicPreload) {
