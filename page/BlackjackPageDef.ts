@@ -20,12 +20,13 @@ module gameblackjack.page {
 
 
 			this["__needLoadAsset"] = [
+				DatingPath.atlas_dating_ui + "qifu.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
 				Path_game_blackjack.atlas_game_ui + "ershiyidian.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "touxiang.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "pai.atlas",
-				DatingPath.atlas_dating_ui + "qifu.atlas",
+				PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
 				Path_game_blackjack.atlas_game_ui + "ershiyidian/effect.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/fapai_3.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
