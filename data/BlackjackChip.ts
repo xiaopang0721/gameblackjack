@@ -14,23 +14,23 @@ module gameblackjack.data {
 			4: [920, 430],
 		}
 		private _chipTargePos = {	//筹码位置
-			10: [640, 415],
-			20: [390, 375],
-			30: [210, 280],
-			40: [1075, 280],
-			50: [895, 380],
+			10: [642, 415],
+			20: [395, 370],
+			30: [215, 265],
+			40: [1075, 275],
+			50: [895, 375],
 		};
 		private _chipTargePosPart = {	//筹码位置
 			10: [620, 415],
 			11: [660, 415],
-			20: [373, 370],
-			21: [409, 390],
-			30: [195, 268],
-			31: [225, 297],
-			40: [1055, 290],
+			20: [373, 360],
+			21: [409, 375],
+			30: [195, 260],
+			31: [230, 282],
+			40: [1060, 285],
 			41: [1090, 263],
-			50: [867, 390],
-			51: [911, 373],
+			50: [878, 385],
+			51: [911, 370],
 		};
 		private _chipPos = {	//保险筹码位置
 			0: [640, 268],
@@ -49,7 +49,7 @@ module gameblackjack.data {
 		private _optType: number;	//怎么获得筹码的
 		private _chipIdx: number;	//筹码ID
 		setData(optType: number, posId: number, mainIdx: number, index: number, isPart: boolean, ownerIdx: number, val: number) {
-			this.size = 0.3;
+			this.size = 0.33;
 			this._chipIdx = index;
 			this._posIndex = posId;
 			this.sortScore = -index - 5;
@@ -102,8 +102,7 @@ module gameblackjack.data {
 			this.targe_pos.x = posX;
 			this.targe_pos.y = posY;
 			if(!this.pos) return;
-			Laya.Tween.clearAll(this.pos);
-			Laya.Tween.to(this.pos, { x: this.targe_pos.x, y: this.targe_pos.y }, 500, Laya.Ease.circInOut);
+			super.sendChip();
 		}
 
 		//分牌移动筹码
@@ -121,7 +120,7 @@ module gameblackjack.data {
 		}
 
 		//结算的时候飘筹码
-		loseFlyChip(posId: number) {
+		loseFlyChip(posId: number, game: Game) {
 			if (posId != this._posIndex) return;
 			if (!this.targe_pos) {
 				this.targe_pos = new Vector2();
@@ -130,15 +129,14 @@ module gameblackjack.data {
 			this.targe_pos.x = this._bankerChipPos[0];
 			this.targe_pos.y = this._bankerChipPos[1];
 			if(!this.pos) return;
-			Laya.Tween.clearAll(this.pos);
-			Laya.Tween.to(this.pos, { x: this.targe_pos.x, y: this.targe_pos.y }, 1500, Laya.Ease.circInOut, Handler.create(this, this.setvisible));
+			super.flyChipBase(600, game);
 		}
-		winFlyChip(posId: number, isPart: boolean) {
+		winFlyChip(posId: number, isPart: boolean, game: Game) {
 			if (posId != this._posIndex) return;
 			if (!this.targe_pos) {
 				this.targe_pos = new Vector2();
 			}
-			// this.isFinalPos = false;
+			this.isFinalPos = false;
 			this.pos = new Vector2(this._bankerChipPos[0], this._bankerChipPos[1]);
 			let temp = this._chipTargePos;
 			if (isPart) {
@@ -148,10 +146,9 @@ module gameblackjack.data {
 			this.targe_pos.x = temp[idx][0];
 			this.targe_pos.y = temp[idx][1]  - this._chipIdx * 2;
 			if(!this.pos) return;
-			Laya.Tween.clearAll(this.pos);
-			Laya.Tween.to(this.pos, { x: this.targe_pos.x, y: this.targe_pos.y }, 1500, Laya.Ease.circInOut);
+			super.flyChipBase(600, game);
 		}
-		flyAllChip(posId: number, ownerIdx: number) {
+		flyAllChip(posId: number, ownerIdx: number, game: Game) {
 			if (posId != this._posIndex) return;
 			if (!this.targe_pos) {
 				this.targe_pos = new Vector2();
@@ -161,11 +158,10 @@ module gameblackjack.data {
 			this.targe_pos.x = this._unitPos[idx][0];
 			this.targe_pos.y = this._unitPos[idx][1];
 			if(!this.pos) return;
-			Laya.Tween.clearAll(this.pos);
-			Laya.Tween.to(this.pos, { x: this.targe_pos.x, y: this.targe_pos.y }, 1000, Laya.Ease.backIn, Handler.create(this, this.setvisible));
+			super.flyChipBase(600, game);
 		}
 		//保险飘筹码
-		loseBaoXianChip() {
+		loseBaoXianChip(game: Game) {
 			if (!this.targe_pos) {
 				this.targe_pos = new Vector2();
 			}
@@ -173,10 +169,9 @@ module gameblackjack.data {
 			this.targe_pos.x = this._bankerChipPos[0];
 			this.targe_pos.y = this._bankerChipPos[1];
 			if(!this.pos) return;
-			Laya.Tween.clearAll(this.pos);
-			Laya.Tween.to(this.pos, { x: this.targe_pos.x, y: this.targe_pos.y }, 1500, Laya.Ease.circInOut, Handler.create(this, this.setvisible));
+			super.flyChipBase(700, game);
 		}
-		sendHjkChip() {
+		sendHjkChip(game: Game) {
 			let index = (this._posIndex - this._mainIdx + 5) % 5;
 			let posX = this._chipPos[index][0];
 			let posY = this._chipPos[index][1]  - this._chipIdx * 2;
@@ -189,8 +184,7 @@ module gameblackjack.data {
 			this.targe_pos.x = posX;
 			this.targe_pos.y = posY;
 			if(!this.pos) return;
-			Laya.Tween.clearAll(this.pos);
-			Laya.Tween.to(this.pos, { x: this.targe_pos.x, y: this.targe_pos.y }, 500, Laya.Ease.circInOut);
+			super.flyChipBase(600, game);
 		}
 
 		//隐藏筹码

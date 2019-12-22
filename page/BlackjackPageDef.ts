@@ -26,7 +26,7 @@ module gameblackjack.page {
 				DatingPath.atlas_dating_ui + "qifu.atlas",
 				Path_game_blackjack.atlas_game_ui + "ershiyidian.atlas",
 				Path_game_blackjack.atlas_game_ui_blackjack_effect + "baopai.atlas",
-				Path_game_blackjack.atlas_game_ui_blackjack_effect + "baoxianbiaopshi.atlas",
+				Path_game_blackjack.atlas_game_ui_blackjack_effect + "baoxianbiaoshi.atlas",
 				Path_game_blackjack.atlas_game_ui_blackjack_effect + "heijieke.atlas",
 				Path_game_blackjack.atlas_game_ui_blackjack_effect + "qpk.atlas",
 				Path_game_blackjack.atlas_game_ui_blackjack_effect + "wuxiaolong.atlas",
