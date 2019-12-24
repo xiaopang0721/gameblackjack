@@ -211,7 +211,7 @@ module gameblackjack.page {
                 }
             }
         }
-        
+
         //打开时要处理的东西
         private updateViewUI(): void {
             this._viewUI.img_menu.visible = false;
@@ -240,7 +240,9 @@ module gameblackjack.page {
             for (let i = 0; i < 5; i++) {
                 this._viewUI["view_player" + i].visible = false;
                 this._viewUI["box_chip" + i].visible = false;
+                this._viewUI["view_player" + i].img_baoxian.visible = false;
                 this._viewUI["view_player" + i].img_frame.visible = false;
+                this._viewUI["view_player" + i].img_pos.visible = false;
                 this._viewUI["view_player" + i].effWin.visible = false;
                 this._viewUI["txt_name" + i].visible = false;
                 this._viewUI["box_prompt" + i].visible = false;
@@ -254,8 +256,6 @@ module gameblackjack.page {
                 this._viewUI["view_hjk" + i].ani1.stop();
                 this._viewUI["view_wxl" + i].visible = false;
                 this._viewUI["view_wxl" + i].ani1.stop();
-                this._viewUI["img_pos" + i].visible = false;
-                this._viewUI["img_baoxian" + i].visible = false;
                 this._viewUI["img_bao" + i].visible = false;
                 this._viewUI["view_boom" + i].visible = false;
                 this._viewUI["box_opt" + i].visible = false;
@@ -524,7 +524,7 @@ module gameblackjack.page {
             this.onUpdateUnit();
             //隐藏下买保险标识
             let posIdx = (u.GetIndex() - this._game.sceneObjectMgr.mainUnit.GetIndex() + 5) % 5;
-            this._viewUI["img_baoxian" + posIdx].visible = false;
+            this._viewUI["view_player" + posIdx].img_baoxian.visible = false;
         }
 
         //精灵显示
@@ -544,16 +544,6 @@ module gameblackjack.page {
             } else {
                 moneyStr = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2).toString();
             }
-            if (moneyStr.length > 5) {
-                this._maxClip.centerX = 20;
-                this._viewUI.btn_max.width = 250;
-            } else if (moneyStr.length > 4) {
-                this._maxClip.centerX = 10;
-                this._viewUI.btn_max.width = 225;
-            } else {
-                this._maxClip.centerX = 0;
-                this._viewUI.btn_max.width = 210;
-            }
             this._maxClip.setText(moneyStr, true, false, Path_game_blackjack.ui_blackjack + "tu_zdz.png");
             let betPos = this._mapInfo.GetCurrentBetPos();
             let max = 5;
@@ -562,14 +552,13 @@ module gameblackjack.page {
                 let unit = this._game.sceneObjectMgr.getUnitByIdx(posIdx);
                 let viewPlayer = this._viewUI["view_player" + index];
                 viewPlayer.visible = unit;
-                // this._viewUI["img_chip" + index].visible = unit;
-                this._viewUI["img_pos" + index].visible = unit;
+                this._viewUI["view_player" + index].img_pos.visible = unit;
                 if (unit) {
                     let name = getMainPlayerName(unit.GetName());
                     viewPlayer.txt_name.text = name;
                     let money = EnumToString.getPointBackNum(unit.GetMoney(), 2);
                     viewPlayer.txt_money.text = money;
-                    this._viewUI["img_pos" + index].skin = Path_game_blackjack.ui_blackjack + "tu_weizhi" + posIdx + ".png"
+                    this._viewUI["view_player" + index].img_pos.skin = Path_game_blackjack.ui_blackjack + "tu_weizhi" + posIdx + ".png"
                     if (unit == mainUnit) {
                         //点了下注完成，按钮都隐藏
                         if (unit.IsBetComplete()) {
@@ -587,22 +576,15 @@ module gameblackjack.page {
                     if (qifu_index && posIdx == qifu_index) {
                         viewPlayer.qifu_type.visible = true;
                         viewPlayer.qifu_type.skin = this._qifuTypeImgUrl;
+                        //时间戳变化 才加上祈福标志
                         this.playTween(viewPlayer.qifu_type, qifu_index);
+                        Laya.timer.once(2500, this, () => {
+                            viewPlayer.img_qifu.visible = true;
+                            viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
+                        })
                     }
-                    //时间戳变化 才加上祈福标志
-                    if (TongyongUtil.getIsHaveQiFu(unit, this._game.sync.serverTimeBys)) {
-                        if (qifu_index && posIdx == qifu_index) {
-                            Laya.timer.once(2500, this, () => {
-                                viewPlayer.img_qifu.visible = true;
-                                viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
-                            })
-                        }
-                        // else {
-                        //     viewPlayer.img_qifu.visible = true;
-                        //     viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
-                        // }
-                    } else {
-                        viewPlayer.img_qifu.visible = false;
+                    else {
+                        viewPlayer.img_qifu.visible = TongyongUtil.getIsHaveQiFu(unit, this._game.sync.serverTimeBys);
                         viewPlayer.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
                     }
                 }
@@ -1324,7 +1306,7 @@ module gameblackjack.page {
                                 this.createObj(this._chipTypeBuy, info.Pos, mainIdx, info.SeatIndex, chipType);
                                 //显示买保险标识
                                 this._viewUI["img_bao" + posIdx].visible = this._viewUI["txt_name" + posIdx].visible;
-                                this._viewUI["img_baoxian" + posIdx].visible = !this._viewUI["img_bao" + posIdx].visible;
+                                this._viewUI["view_player" + posIdx].img_baoxian.visible = !this._viewUI["img_bao" + posIdx].visible;
                             }
                         }
                         break;

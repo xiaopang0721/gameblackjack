@@ -4,7 +4,7 @@
 module gameblackjack.data {
 	export class BlackjackData extends gamecomponent.object.PlayingPuKeCard {
 		public _cardCount: number = 0;
-		private _bankerCard: any = [610, 222, 15]	//庄家的牌的位置，x,y,间距
+		private _bankerCard: any = [610, 200, 15]	//庄家的牌的位置，x,y,间距
 		private _posTemp: any = {	//牌的位置角度
 			10: [[610, 350, 0], [625, 350, 0], [640, 350, 0], [655, 350, 0], [670, 350, 0]],
 			20: [[407, 307, 20], [422, 313, 20], [436, 318, 20], [452, 324, 20], [466, 329, 20]],
