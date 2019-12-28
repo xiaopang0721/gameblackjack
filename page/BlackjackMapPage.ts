@@ -64,7 +64,7 @@ module gameblackjack.page {
         //     10: [505, 225], 11: [585, 225], 20: [317, 199], 21: [385, 229], 30: [153, 115],
         //     31: [207, 154], 40: [877, 139], 41: [935, 97], 50: [697, 218], 51: [764, 188]
         // }; //爆炸位置,分牌的
-        private _doublePos: any = { 10: [645, 319], 20: [463, 293], 30: [316, 221], 40: [981, 215], 50: [826, 290] }; //双倍标识位置
+        private _doublePos: any = { 10: [645, 311], 20: [466, 285], 30: [316, 213], 40: [981, 207], 50: [826, 285] }; //双倍标识位置
         private _doublePosPart: any = {
             10: [607, 311], 11: [684, 311], 20: [440, 285], 21: [505, 313], 30: [288, 206],
             31: [340, 243], 40: [949, 238], 41: [1004, 198], 50: [781, 310], 51: [845, 281]
@@ -231,7 +231,7 @@ module gameblackjack.page {
             this._viewUI.view_xipai.ani_xipai.stop();
             this._viewUI.text_info.visible = false;
             this._viewUI.img_point.visible = false;
-            // this._viewUI.text_roomtype.visible = false;
+            this._viewUI.box_room_left.visible = false;
             this._viewUI.view_qipao5_0.visible = false;
             this._viewUI.view_baopai5_0.visible = false;
             this._viewUI.view_paixie.img_card.visible = false;
@@ -372,7 +372,7 @@ module gameblackjack.page {
                             needMoney = this._betInfo[buyIdx].chip / 2
                         }
                     }
-                    if (this._game.sceneObjectMgr.mainPlayer.playerInfo.money < needMoney) {
+                    if (this._game.sceneObjectMgr.mainUnit.GetMoney() < needMoney) {
                         this._game.showTips("金币不足，购买失败！");
                         return;
                     }
@@ -500,9 +500,11 @@ module gameblackjack.page {
             this._viewUI.btn_enter.visible = false;
             this._viewUI.btn_enter.disabled = false;
             this._viewUI.btn_complete.disabled = false;
+            //上次点击的位置
             let idx = (this._betPos - mainIdx + 5) % 5;
             this._viewUI["img_choose" + idx].visible = false;
             this._viewUI["box_prompt" + idx].visible = false;
+            //现在点击的位置
             this._betPos = unitIdx;
             idx = (this._betPos - mainIdx + 5) % 5;
             this._viewUI["img_choose" + idx].visible = true;
@@ -544,6 +546,13 @@ module gameblackjack.page {
             } else {
                 moneyStr = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2).toString();
             }
+            if (moneyStr.length > 5) {
+                this._viewUI.btn_min.x = 294;
+                this._viewUI.btn_max.width = 240;
+            } else {
+                this._viewUI.btn_min.x = 314;
+                this._viewUI.btn_max.width = 200;
+            }
             this._maxClip.setText(moneyStr, true, false, Path_game_blackjack.ui_blackjack + "tu_zdz.png");
             let betPos = this._mapInfo.GetCurrentBetPos();
             let max = 5;
@@ -558,7 +567,7 @@ module gameblackjack.page {
                     viewPlayer.txt_name.text = name;
                     let money = EnumToString.getPointBackNum(unit.GetMoney(), 2);
                     viewPlayer.txt_money.text = money;
-                    this._viewUI["view_player" + index].img_pos.skin = Path_game_blackjack.ui_blackjack + "tu_weizhi" + posIdx + ".png"
+                    this._viewUI["view_player" + index].img_pos.skin = PathGameTongyong.ui_tongyong_general + "tu_weizhi" + posIdx + ".png"
                     if (unit == mainUnit) {
                         //点了下注完成，按钮都隐藏
                         if (unit.IsBetComplete()) {
@@ -705,18 +714,18 @@ module gameblackjack.page {
             this._betVal = ChipConfig[this._blackjackStory.mapLv][0];
             this._viewUI.text_info.text = "牌局号：" + this._mapInfo.GetGameNo();
             this._viewUI.text_info.visible = true;
+            this._viewUI.box_room_left.visible = true;
             let str = "";
             if (this._blackjackStory.mapLv == Web_operation_fields.GAME_ROOM_CONFIG_BLACKJACK_1) {
-                str = "新手场底注：";
+                str = "房间：新手场";
             } else if (this._blackjackStory.mapLv == Web_operation_fields.GAME_ROOM_CONFIG_BLACKJACK_2) {
-                str = "小资场底注：";
+                str = "房间：小资场";
             } else if (this._blackjackStory.mapLv == Web_operation_fields.GAME_ROOM_CONFIG_BLACKJACK_3) {
-                str = "老板场底注：";
+                str = "房间：老板场";
             } else if (this._blackjackStory.mapLv == Web_operation_fields.GAME_ROOM_CONFIG_BLACKJACK_4) {
-                str = "富豪场底注：";
+                str = "房间：富豪场";
             }
-            // this._viewUI.text_roomtype.visible = true;
-            // this._viewUI.text_roomtype.text = str + ChipConfig[this._blackjackStory.mapLv][0];
+            this._viewUI.txt_roomtype.text = str + "  底注：" + ChipConfig[this._blackjackStory.mapLv][0];
             if (!this._dealCards) {
                 this.onAfterDealCards();
             }
@@ -808,6 +817,7 @@ module gameblackjack.page {
                     }
                 }
                 this._viewUI.box_state1.visible = true;
+                this._viewUI.btn_buy.disabled = this._game.sceneObjectMgr.mainUnit.GetMoney() < needMoney;
                 //倒计时
                 let now_time = this._game.sync.serverTimeBys * 1000;
                 let endTime = this._mapInfo.GetCountDown() * 1000;
@@ -1004,7 +1014,7 @@ module gameblackjack.page {
                             Laya.timer.once(1000, this, () => {
                                 this.createObj(this._chipTypeWin, this._allCardsInfo[index].pos, idx, ownerIdx, chipType);
                             })
-                            Laya.timer.once(2000, this, () => {
+                            Laya.timer.once(1000, this, () => {
                                 for (let i = 0; i < this._totalChip.length; i++) {
                                     let chip: BlackjackChip = this._totalChip[i]
                                     chip.flyAllChip(this._allCardsInfo[index].pos, ownerIdx, this._game);
@@ -1016,7 +1026,7 @@ module gameblackjack.page {
                                 chip.loseFlyChip(this._allCardsInfo[index].pos, this._game);
                             }
                         } else {
-                            Laya.timer.once(2000, this, () => {
+                            Laya.timer.once(1000, this, () => {
                                 for (let i = 0; i < this._totalChip.length; i++) {
                                     let chip: BlackjackChip = this._totalChip[i]
                                     chip.flyAllChip(this._allCardsInfo[index].pos, ownerIdx, this._game);
@@ -1694,7 +1704,7 @@ module gameblackjack.page {
             playerIcon.img_di.visible = false;
             //飘字
             clip_money.setText(Math.abs(value), true, false, preSkin);
-            clip_money.centerX = playerIcon.clip_money.centerX;
+            clip_money.centerX = playerIcon.clip_money.centerX - 4;
             clip_money.centerY = playerIcon.clip_money.centerY;
             playerIcon.clip_money.parent.addChild(clip_money);
             this._clipList.push(clip_money);
@@ -1703,7 +1713,7 @@ module gameblackjack.page {
             playerIcon.box_clip.y = 57;
             playerIcon.box_clip.visible = true;
             Laya.Tween.clearAll(playerIcon.box_clip);
-            Laya.Tween.to(playerIcon.box_clip, { y: playerIcon.box_clip.y - 50 }, 1000);
+            Laya.Tween.to(playerIcon.box_clip, { y: playerIcon.box_clip.y - 55 }, 700);
             //赢钱动画
             playerIcon.effWin.visible = value > 0;
             value > 0 && playerIcon.effWin.ani1.play(0, false);
