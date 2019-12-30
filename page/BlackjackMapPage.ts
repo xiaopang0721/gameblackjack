@@ -200,12 +200,12 @@ module gameblackjack.page {
                 //全面屏
                 if (this._game.isFullScreen) {
                     this._viewUI.box_top_left.left = 14 + 56;
-                    this._viewUI.box_room_left.left = 105 + 56;
+                    this._viewUI.box_room_left.left = 115 + 56;
                     this._viewUI.box_top_right.right = 28 + 56;
                     this._viewUI.box_bottom_right.right = 12 + 56;
                 } else {
                     this._viewUI.box_top_left.left = 14;
-                    this._viewUI.box_room_left.left = 105;
+                    this._viewUI.box_room_left.left = 115;
                     this._viewUI.box_top_right.right = 28;
                     this._viewUI.box_bottom_right.right = 12;
                 }
@@ -329,7 +329,7 @@ module gameblackjack.page {
                 case this._viewUI.btn_min://最小
                     this._viewUI.box_bet.visible = false;
                     let minBet = ChipConfig[this._blackjackStory.mapLv][0];
-                    if (this._game.sceneObjectMgr.mainUnit.GetMoney() < ChipConfig[this._blackjackStory.mapLv][0]) {
+                    if (TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney()) < ChipConfig[this._blackjackStory.mapLv][0]) {
                         this._game.showTips("金币不足");
                         return;
                     }
@@ -341,7 +341,7 @@ module gameblackjack.page {
                 case this._viewUI.btn_max://最大
                     this._viewUI.box_bet.visible = false;
                     let maxBet = ChipConfig[this._blackjackStory.mapLv][1];
-                    let hasMoney = this._game.sceneObjectMgr.mainUnit.GetMoney();
+                    let hasMoney = TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney());
                     if (maxBet > hasMoney) {
                         maxBet = hasMoney;
                     }
@@ -356,7 +356,7 @@ module gameblackjack.page {
                     break;
                 case this._viewUI.btn_enter:
                     this._viewUI.box_bet.visible = false;
-                    if (this._game.sceneObjectMgr.mainUnit.GetMoney() < ChipConfig[this._blackjackStory.mapLv][0]) {
+                    if (TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney()) < ChipConfig[this._blackjackStory.mapLv][0]) {
                         this._game.showTips("金币不足");
                         return;
                     }
@@ -372,7 +372,7 @@ module gameblackjack.page {
                             needMoney = this._betInfo[buyIdx].chip / 2
                         }
                     }
-                    if (this._game.sceneObjectMgr.mainUnit.GetMoney() < needMoney) {
+                    if (TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney()) < needMoney) {
                         this._game.showTips("金币不足，购买失败！");
                         return;
                     }
@@ -539,12 +539,12 @@ module gameblackjack.page {
             let idx = mainUnit.GetIndex();
             if (!idx) return;
             let max_val = ChipConfig[this._blackjackStory.mapLv][1];
-            let curMoney = mainUnit.GetMoney();
+            let curMoney = TongyongUtil.getMoneyChange(mainUnit.GetMoney());
             let moneyStr: string;
             if (max_val < curMoney) {
                 moneyStr = max_val.toString();
             } else {
-                moneyStr = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2).toString();
+                moneyStr = EnumToString.getPointBackNum(curMoney, 2).toString();
             }
             if (moneyStr.length > 5) {
                 this._viewUI.btn_min.x = 294;
@@ -565,7 +565,7 @@ module gameblackjack.page {
                 if (unit) {
                     let name = getMainPlayerName(unit.GetName());
                     viewPlayer.txt_name.text = name;
-                    let money = EnumToString.getPointBackNum(unit.GetMoney(), 2);
+                    let money = EnumToString.getPointBackNum(TongyongUtil.getMoneyChange(TongyongUtil.getMoneyChange(unit.GetMoney())), 2);
                     viewPlayer.txt_money.text = money;
                     this._viewUI["view_player" + index].img_pos.skin = PathGameTongyong.ui_tongyong_general + "tu_weizhi" + posIdx + ".png"
                     if (unit == mainUnit) {
@@ -688,7 +688,7 @@ module gameblackjack.page {
                         this._viewUI.view_player0.img_vip.skin = TongyongUtil.getVipUrl(mPlayer.playerInfo.vip_level);
                     }
                 } else {
-                    money = unitOffline.GetMoney();
+                    money = TongyongUtil.getMoneyChange(unitOffline.GetMoney());
                     this._viewUI.view_player0.txt_name.text = getMainPlayerName(unitOffline.GetName());
                     this._viewUI.view_player0.img_icon.skin = TongyongUtil.getHeadUrl(unitOffline.GetHeadImg(), 2);
                     this._viewUI.view_player0.img_qifu.visible = TongyongUtil.getIsHaveQiFu(unitOffline, this._game.sync.serverTimeBys);
@@ -817,7 +817,7 @@ module gameblackjack.page {
                     }
                 }
                 this._viewUI.box_state1.visible = true;
-                this._viewUI.btn_buy.disabled = this._game.sceneObjectMgr.mainUnit.GetMoney() < needMoney;
+                this._viewUI.btn_buy.disabled = TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney()) < needMoney;
                 //倒计时
                 let now_time = this._game.sync.serverTimeBys * 1000;
                 let endTime = this._mapInfo.GetCountDown() * 1000;
@@ -886,7 +886,7 @@ module gameblackjack.page {
                 //置灰分牌和双倍下注按钮
                 let unit = this._game.sceneObjectMgr.getUnitByIdx(betIdx);
                 if (unit) {
-                    if (unit.GetMoney() < needMoney) {
+                    if (TongyongUtil.getMoneyChange(unit.GetMoney()) < needMoney) {
                         this._viewUI.btn_double.disabled = true;
                         this._viewUI.btn_part.disabled = true;
                     } else {
