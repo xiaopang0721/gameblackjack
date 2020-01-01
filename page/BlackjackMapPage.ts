@@ -1317,6 +1317,11 @@ module gameblackjack.page {
                                 //显示买保险标识
                                 this._viewUI["img_bao" + posIdx].visible = this._viewUI["txt_name" + posIdx].visible;
                                 this._viewUI["view_player" + posIdx].img_baoxian.visible = !this._viewUI["img_bao" + posIdx].visible;
+                                if (this._viewUI["img_bao" + posIdx].visible) {
+                                    this._viewUI["img_bao" + posIdx].ani1.play(0, false);
+                                } else if (this._viewUI["view_player" + posIdx].img_baoxian.visible) {
+                                    this._viewUI["view_player" + posIdx].img_baoxian.ani1.play(0, false);
+                                }
                             }
                         }
                         break;
