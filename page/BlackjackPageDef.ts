@@ -26,7 +26,6 @@ module gameblackjack.page {
 				DatingPath.atlas_dating_ui + "qifu.atlas",
 				Path_game_blackjack.atlas_game_ui + "ershiyidian.atlas",
 				Path_game_blackjack.atlas_game_ui_blackjack_effect + "baopai.atlas",
-				Path_game_blackjack.atlas_game_ui_blackjack_effect + "baoxianbiaoshi.atlas",
 				Path_game_blackjack.atlas_game_ui_blackjack_effect + "heijieke.atlas",
 				Path_game_blackjack.atlas_game_ui_blackjack_effect + "qpk.atlas",
 				Path_game_blackjack.atlas_game_ui_blackjack_effect + "wuxiaolong.atlas",
@@ -42,6 +41,7 @@ module gameblackjack.page {
 				PathGameTongyong.atlas_game_ui_tongyong_general_effect + "fapai_3.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong_general_effect + "xipai.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong_general_effect + "anniug.atlas",
+				PathGameTongyong.atlas_game_ui_tongyong_general_effect + "baoxianbiaoshi.atlas",
 
 				Path.custom_atlas_scene + 'card.atlas',
 				Path.custom_atlas_scene + 'chip.atlas',

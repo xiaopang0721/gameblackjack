@@ -77,7 +77,6 @@ module gameblackjack.page {
                 DatingPath.atlas_dating_ui + "qifu.atlas",
                 Path_game_blackjack.atlas_game_ui + "ershiyidian.atlas",
                 Path_game_blackjack.atlas_game_ui_blackjack_effect + "baopai.atlas",
-                Path_game_blackjack.atlas_game_ui_blackjack_effect + "baoxianbiaoshi.atlas",
                 Path_game_blackjack.atlas_game_ui_blackjack_effect + "heijieke.atlas",
                 Path_game_blackjack.atlas_game_ui_blackjack_effect + "qpk.atlas",
                 Path_game_blackjack.atlas_game_ui_blackjack_effect + "wuxiaolong.atlas",
@@ -93,6 +92,7 @@ module gameblackjack.page {
                 PathGameTongyong.atlas_game_ui_tongyong_general_effect + "qp.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong_general_effect + "fapai_3.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong_general_effect + "xipai.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong_general_effect + "baoxianbiaoshi.atlas",
             ];
         }
 
@@ -544,7 +544,7 @@ module gameblackjack.page {
             if (max_val < curMoney) {
                 moneyStr = max_val.toString();
             } else {
-                moneyStr = EnumToString.getPointBackNum(curMoney, 2).toString();
+                moneyStr = curMoney.toString();
             }
             if (moneyStr.length > 5) {
                 this._viewUI.btn_min.x = 294;
@@ -565,7 +565,7 @@ module gameblackjack.page {
                 if (unit) {
                     let name = getMainPlayerName(unit.GetName());
                     viewPlayer.txt_name.text = name;
-                    let money = EnumToString.getPointBackNum(TongyongUtil.getMoneyChange(TongyongUtil.getMoneyChange(unit.GetMoney())), 2);
+                    let money = EnumToString.getPointBackNum(TongyongUtil.getMoneyChange(unit.GetMoney()), 2);
                     viewPlayer.txt_money.text = money;
                     this._viewUI["view_player" + index].img_pos.skin = PathGameTongyong.ui_tongyong_general + "tu_weizhi" + posIdx + ".png"
                     if (unit == mainUnit) {
