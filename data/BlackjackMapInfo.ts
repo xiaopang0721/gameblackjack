@@ -51,7 +51,7 @@ module gameblackjack.data {
 				} else if (battleInfo.Type == 16) {
 					let info = this._battleInfoMgr.info[i] as gamecomponent.object.BattleInfoBuy;
 					let name = this.GetPlayerNameFromSeat(info.SeatIndex);
-					let newString = name + "：" + "在" + info.Pos / 10 + "号座位买保险";
+					let newString = name + "：" + "在" + info.Pos + "号座位买保险";
 					str1 = str1 + "#" + newString;
 				} else if (battleInfo.Type == 15) {
 					let info = this._battleInfoMgr.info[i] as gamecomponent.object.BattleInfoDeal;
