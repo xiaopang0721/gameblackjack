@@ -23,7 +23,6 @@ module gameblackjack.page {
 
 
 			this["__needLoadAsset"] = [
-				DatingPath.atlas_dating_ui + "qifu.atlas",
 				Path_game_blackjack.atlas_game_ui + "ershiyidian.atlas",
 				Path_game_blackjack.atlas_game_ui_blackjack_effect + "baopai.atlas",
 				Path_game_blackjack.atlas_game_ui_blackjack_effect + "heijieke.atlas",

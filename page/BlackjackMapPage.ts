@@ -74,7 +74,6 @@ module gameblackjack.page {
             super(v, onOpenFunc, onCloseFunc);
             this._isNeedDuang = false;
             this._asset = [
-                DatingPath.atlas_dating_ui + "qifu.atlas",
                 Path_game_blackjack.atlas_game_ui + "ershiyidian.atlas",
                 Path_game_blackjack.atlas_game_ui_blackjack_effect + "baopai.atlas",
                 Path_game_blackjack.atlas_game_ui_blackjack_effect + "heijieke.atlas",

@@ -129,7 +129,7 @@ module gameblackjack.data {
 			this.targe_pos.x = this._bankerChipPos[0];
 			this.targe_pos.y = this._bankerChipPos[1];
 			if(!this.pos) return;
-			super.flyChipBase(600, game);
+			super.danRenFlyChipBase(600, game);
 		}
 		winFlyChip(posId: number, isPart: boolean, game: Game) {
 			if (posId != this._posIndex) return;
@@ -146,7 +146,7 @@ module gameblackjack.data {
 			this.targe_pos.x = temp[idx][0];
 			this.targe_pos.y = temp[idx][1]  - this._chipIdx * 2;
 			if(!this.pos) return;
-			super.flyChipBase(600, game);
+			super.danRenFlyChipBase(600, game);
 		}
 		flyAllChip(posId: number, ownerIdx: number, game: Game) {
 			if (posId != this._posIndex) return;
@@ -158,7 +158,7 @@ module gameblackjack.data {
 			this.targe_pos.x = this._unitPos[idx][0];
 			this.targe_pos.y = this._unitPos[idx][1];
 			if(!this.pos) return;
-			super.flyChipBase(600, game);
+			super.danRenFlyChipBase(600, game);
 		}
 		//保险飘筹码
 		loseBaoXianChip(game: Game) {
@@ -169,7 +169,7 @@ module gameblackjack.data {
 			this.targe_pos.x = this._bankerChipPos[0];
 			this.targe_pos.y = this._bankerChipPos[1];
 			if(!this.pos) return;
-			super.flyChipBase(700, game);
+			super.danRenFlyChipBase(700, game);
 		}
 		sendHjkChip(game: Game) {
 			let index = (this._posIndex - this._mainIdx + 5) % 5;
@@ -184,7 +184,7 @@ module gameblackjack.data {
 			this.targe_pos.x = posX;
 			this.targe_pos.y = posY;
 			if(!this.pos) return;
-			super.flyChipBase(600, game);
+			super.danRenFlyChipBase(600, game);
 		}
 
 		//隐藏筹码
